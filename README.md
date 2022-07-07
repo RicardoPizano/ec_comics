@@ -72,7 +72,7 @@ $ docker pull ec_mscomic:latest
 #### Crear contenedor
 
 ``` bash
-$ docker run -d -p --name container_ec_msusers ${puerto}:80 ec_mscomics 
+$ docker run -d -p ${puerto}:80 --name container_ec_mscomics ec_mscomics 
 ```
 
 ## Edpoints
