@@ -18,5 +18,5 @@ class Comic(BaseModel):
 
 
 class SearchComicsResponse(BaseModel):
-    characters: List[Character] = list()
-    comics: List[Comic] = list()
+    characters: List[Character]
+    comics: List[Comic]

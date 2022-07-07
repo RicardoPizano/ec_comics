@@ -74,3 +74,37 @@ $ docker pull ec_mscomic:latest
 ``` bash
 $ docker run -d -p --name container_ec_msusers ${puerto}:80 ec_mscomics 
 ```
+
+## Edpoints
+
+### /searchComics
+
+#### GET
+``` json
+query params:
+query (str) : nombre o titulo del personaje o comic a buscar
+search_by_type (str) : filtro para buscar solo personajes o comics (ENUM: characters, comics)
+limit (int) : limite de resultados a buscar (max 100)
+page (int) : número de pagina a buscar en el total de resultados
+body response:
+{
+  "characters": [
+    {
+      "id": 0,
+      "name": "string",
+      "image": "string",
+      "appearances": 0
+    }
+  ],
+  "comics": [
+    {
+      "id": 0,
+      "title": "string",
+      "image": "string",
+      "onsaleDate": "string"
+    }
+  ]
+}
+```
+
+##### Para mayor información una vez ejecutando el proyecto entrar a la url: `{base_url}/docs`
