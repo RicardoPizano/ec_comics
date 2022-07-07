@@ -14,7 +14,7 @@ LOGGER_FILE_NAME = "main.py"
 
 @app.get("/searchComics", response_model=SearchComicsResponse)
 async def search_comics(query: Union[str, None] = None, search_by_type: Union[FilterTypeEnum, None] = None,
-                        limit: Union[int, None] = 20, page: Union[int, None] = 1):
+                        comic_id: Union[int, None] = None, limit: Union[int, None] = 20, page: Union[int, None] = 1):
     logger.inf(LOGGER_FILE_NAME, "search_comics", f"try search comic: query => {query} - "
                                                   f"search_by_type => {search_by_type} - "
                                                   f"limit => {limit} - page => {page}")
@@ -22,7 +22,9 @@ async def search_comics(query: Union[str, None] = None, search_by_type: Union[Fi
     characters = list()
     comics = list()
     offset = limit * (page - 1)
-    if query:
+    if comic_id:
+        comics = ApiMarvel.find_comics(comic_id=comic_id, limit=limit, offset=offset)
+    elif query:
         if search_by_type == FilterTypeEnum.characters:
             characters = ApiMarvel.find_characters(query=query, limit=limit, offset=offset)
         elif search_by_type == FilterTypeEnum.comics:
