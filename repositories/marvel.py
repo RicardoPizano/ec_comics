@@ -35,12 +35,15 @@ class ApiMarvel:
         }
 
     @staticmethod
-    def find_comics(query: str = None, limit: int = 20, offset: int = 0) -> List[Comic]:
+    def find_comics(query: str = None, comic_id: int = None, limit: int = 20, offset: int = 0) -> List[Comic]:
         url = f"{ApiMarvel.BASE_URL}/{ApiMarvel.COMICS_ENDPOINT}"
         params = ApiMarvel._get_default_params(limit=limit, offset=offset)
         params["orderBy"] = "title"
+        params["formatType"] = "comic"
         if query:
             params["titleStartsWith"] = query
+        if comic_id:
+            params["digitalId"] = comic_id
         comics = list()
         try:
             response = requests.get(url=url, params=params)
