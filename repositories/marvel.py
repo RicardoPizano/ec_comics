@@ -39,7 +39,9 @@ class ApiMarvel:
         url = f"{ApiMarvel.BASE_URL}/{ApiMarvel.COMICS_ENDPOINT}"
         params = ApiMarvel._get_default_params(limit=limit, offset=offset)
         params["orderBy"] = "title"
-        params["formatType"] = "comic"
+        params["format"] = "comic"
+        params["noVariants"] = True
+        params["hasDigitalIssue"] = True
         if query:
             params["titleStartsWith"] = query
         if comic_id:
@@ -69,7 +71,7 @@ class ApiMarvel:
                     on_sale_date = date["date"]
                     break
             return Comic(
-                id=comic["id"],
+                id=comic["digitalId"],
                 title=comic["title"],
                 image=image,
                 onsaleDate=on_sale_date,
