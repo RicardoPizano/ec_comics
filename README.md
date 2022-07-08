@@ -58,7 +58,7 @@ $ pip3 install -r requirements.tx
 #### Ejecutar
 
 ``` bash 
-$ python3 main.py
+$ uvicorn main:app --host 0.0.0.0
 ``` 
 
 ### Docker
@@ -66,13 +66,14 @@ $ python3 main.py
 #### Descargar imagen
 
 ``` bash
-$ docker pull ec_mscomic:latest
+$ docker pull rikymon/ec_mscomics:latest
 ```
 
 #### Crear contenedor
 
 ``` bash
-$ docker run -d -p ${puerto}:80 --name container_ec_mscomics ec_mscomics 
+# ${puerto} valor del puerto en la pc local (recomendado 8001)
+$ docker run -d -p ${puerto}:80 --name container_ec_mscomics rikymon/ec_mscomics 
 ```
 
 ## Edpoints
